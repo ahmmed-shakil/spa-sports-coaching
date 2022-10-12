@@ -1,0 +1,7 @@
+.form {
+  background-image: url("../images//form-bg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
