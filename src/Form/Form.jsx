@@ -60,25 +60,25 @@ const Form = () => {
     setClass(event.target.value);
   };
   const handleLevelChange = (event) => {
-    setClass(event.target.value);
+    setLevel(event.target.value);
   };
   const handleLocationOneChange = (event) => {
-    setClass(event.target.value);
+    setLocationOne(event.target.value);
   };
   const handleLocationTwoChange = (event) => {
-    setClass(event.target.value);
+    setLocationTwo(event.target.value);
   };
   const handleDayOneChange = (event) => {
-    setClass(event.target.value);
+    setDayOne(event.target.value);
   };
   const handleDayTwoChange = (event) => {
-    setClass(event.target.value);
+    setDayTwo(event.target.value);
   };
   const handleTimeOneChange = (event) => {
-    setClass(event.target.value);
+    setTimeOne(event.target.value);
   };
   const handleTimeTwoChange = (event) => {
-    setClass(event.target.value);
+    setTimeTwo(event.target.value);
   };
 
   return (
@@ -238,7 +238,7 @@ const Form = () => {
           select
           label="Select Time"
           value={timeTwo}
-          onChange={handleTimeOneChange}
+          onChange={handleTimeTwoChange}
           fullWidth
           helperText="Please select your time"
         >
