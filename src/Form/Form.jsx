@@ -1,6 +1,21 @@
-import { Button, MenuItem, TextField, Typography } from "@mui/material";
-import React from "react";
+import { Button, MenuItem, Modal, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import React, { useEffect } from "react";
+import CoachSection from "../CoachSection/CoachSection";
+import FormTitle from "../FormTitle/FormTitle";
 import "./Form.css";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 500,
+  bgcolor: "white",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const classes = [
   { label: "Private Class 1 to 1" },
@@ -15,7 +30,7 @@ const levels = [
 const locations = [
   { label: "HK Squash Centre" },
   { label: "Cornwall Street Squash and Table Tennis Centre" },
-  { label: "Others, please specify(Provide freetext textbox for entry" },
+  { label: "Others" },
 ];
 const days = [
   { label: "Monday" },
@@ -45,6 +60,9 @@ const Form = () => {
   const [dayTwo, setDayTwo] = React.useState("");
   const [timeOne, setTimeOne] = React.useState("");
   const [timeTwo, setTimeTwo] = React.useState("");
+  const [data, setData] = React.useState({});
+  const [open, setOpen] = React.useState(false);
+
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
@@ -81,8 +99,50 @@ const Form = () => {
     setTimeTwo(event.target.value);
   };
 
+  const handleFormData = () => {
+    setData({
+      name,
+      email,
+      phone,
+      classType: selectClass,
+      level,
+      preferredChoice: {
+        preferredChoice1st: {
+          userLocation: locationOne,
+          date: dayOne,
+          time: timeOne,
+        },
+        preferredChoice2nd: {
+          userLocation: locationTwo,
+          date: dayTwo,
+          time: timeTwo,
+        },
+      },
+    });
+    console.log(data);
+    fetch("https://dry-temple-27140.herokuapp.com/api/users", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((userData) => {
+        console.log("Success:", userData);
+        setOpen(true);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const handleClose = () => setOpen(false);
+
   return (
     <div className="form-container">
+      <FormTitle />
+      <CoachSection />
       <form>
         <TextField
           sx={{ my: 1 }}
@@ -165,6 +225,18 @@ const Form = () => {
             </MenuItem>
           ))}
         </TextField>
+        {locationOne === "Others" && (
+          <TextField
+            sx={{ my: 1 }}
+            type="text"
+            id="outlined-name"
+            label="Enter your location"
+            value={name}
+            fullWidth
+            onChange={(e) => handleLocationOneChange(e.target.value)}
+            helperText="Plase specify"
+          />
+        )}
         <TextField
           sx={{ my: 1 }}
           id="outlined-select-day-1"
@@ -216,6 +288,18 @@ const Form = () => {
             </MenuItem>
           ))}
         </TextField>
+        {locationTwo === "Others" && (
+          <TextField
+            sx={{ my: 1 }}
+            type="text"
+            id="outlined-name"
+            label="Enter your location"
+            value={name}
+            fullWidth
+            onChange={handleLocationTwoChange}
+            helperText="Plase specify"
+          />
+        )}
         <TextField
           sx={{ my: 1 }}
           id="outlined-select-day-2"
@@ -248,10 +332,42 @@ const Form = () => {
             </MenuItem>
           ))}
         </TextField>
-        <Button variant="contained" size="large" sx={{ background: "black" }}>
+        <Button
+          onClick={handleFormData}
+          variant="contained"
+          size="large"
+          sx={{ background: "black" }}
+        >
           Submit
         </Button>
       </form>
+
+      {/* SUCCESS MODAL */}
+
+      <Modal
+        keepMounted
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
+            Congralutalions! &#127881;
+          </Typography>
+          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+            Your registration is successful
+          </Typography>
+          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+            We'll get in touch with you soon. Thank you.
+          </Typography>
+          <Button onClick={handleClose} sx={{ mt: 3 }} variant="contained">
+            Okay!
+          </Button>
+        </Box>
+      </Modal>
+
+      {/* SUCCESS MODAl */}
     </div>
   );
 };
