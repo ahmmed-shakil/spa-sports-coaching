@@ -18,10 +18,8 @@ export default function ButtonAppBar() {
           <Typography
             variant="h3"
             style={{
-              fontFamily: "Roboto",
-              color: "black",
-              fontWeight: "700",
-              fontSize: "2rem",
+              color: "antiquewhite",
+              fontWeight: "500",
             }}
           >
             Your Squash Journey Starts Here

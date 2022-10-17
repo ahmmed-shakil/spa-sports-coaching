@@ -99,6 +99,13 @@ const Form = () => {
     setTimeTwo(event.target.value);
   };
 
+  const handleOtherOneChange = (event) => {
+    setLocationOne(event.target.value);
+  };
+  const handleOtherTwoChange = (event) => {
+    setLocationTwo(event.target.value);
+  };
+
   const handleFormData = () => {
     setData({
       name,
@@ -140,207 +147,203 @@ const Form = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div className="form-container">
+    <div>
       <FormTitle />
-      <CoachSection />
-      <form>
-        <TextField
-          sx={{ my: 1 }}
-          type="text"
-          id="outlined-name"
-          label="Name"
-          value={name}
-          fullWidth
-          onChange={handleNameChange}
-        />
+      <div className="form-container">
+        <div>
+          <form>
+            <TextField
+              sx={{ my: 1 }}
+              type="text"
+              id="outlined-name"
+              label="Name"
+              value={name}
+              fullWidth
+              onChange={handleNameChange}
+            />
 
-        <TextField
-          sx={{ my: 1 }}
-          type="email"
-          id="outlined-email"
-          label="Email"
-          value={email}
-          fullWidth
-          onChange={handleEmailChange}
-        />
+            <TextField
+              sx={{ my: 1 }}
+              type="email"
+              id="outlined-email"
+              label="Email"
+              value={email}
+              fullWidth
+              onChange={handleEmailChange}
+            />
 
-        <TextField
-          sx={{ my: 1 }}
-          type="phone"
-          id="outlined-phone"
-          label="Phone"
-          value={phone}
-          fullWidth
-          onChange={handlePhoneChange}
-        />
+            <TextField
+              sx={{ my: 1 }}
+              type="phone"
+              id="outlined-phone"
+              label="Phone"
+              value={phone}
+              fullWidth
+              onChange={handlePhoneChange}
+            />
 
-        <TextField
-          sx={{ my: 1 }}
-          id="outlined-select-class"
-          select
-          label="Select Class"
-          value={selectClass}
-          onChange={handleClassChange}
-          fullWidth
-          helperText="Please select your class"
-        >
-          {classes.map((option) => (
-            <MenuItem key={option.label} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+            <TextField
+              sx={{ my: 1 }}
+              id="outlined-select-class"
+              select
+              label="Select Class"
+              value={selectClass}
+              onChange={handleClassChange}
+              fullWidth
+              helperText="Please select your class"
+            >
+              {classes.map((option) => (
+                <MenuItem key={option.label} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
-        <TextField
-          sx={{ my: 1 }}
-          id="outlined-select-level"
-          select
-          label="Select Level"
-          value={level}
-          onChange={handleLevelChange}
-          fullWidth
-          helperText="Please select your level"
-        >
-          {levels.map((option) => (
-            <MenuItem key={option.label} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        {/* DAY 1 */}
-        <Typography variant="h5">Preferred Day (1st Choice)</Typography>
-        <TextField
-          sx={{ my: 1 }}
-          id="outlined-select-location-1"
-          select
-          label="Select Location"
-          value={locationOne}
-          onChange={handleLocationOneChange}
-          fullWidth
-          helperText="Please select your location"
-        >
-          {locations.map((option) => (
-            <MenuItem key={option.label} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        {locationOne === "Others" && (
-          <TextField
-            sx={{ my: 1 }}
-            type="text"
-            id="outlined-name"
-            label="Enter your location"
-            value={name}
-            fullWidth
-            onChange={(e) => handleLocationOneChange(e.target.value)}
-            helperText="Plase specify"
-          />
-        )}
-        <TextField
-          sx={{ my: 1 }}
-          id="outlined-select-day-1"
-          select
-          label="Select Day"
-          value={dayOne}
-          onChange={handleDayOneChange}
-          fullWidth
-          helperText="Please select your date"
-        >
-          {days.map((option) => (
-            <MenuItem key={option.label} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          sx={{ my: 1 }}
-          id="outlined-select-time-1"
-          select
-          label="Select Time"
-          value={timeOne}
-          onChange={handleTimeOneChange}
-          fullWidth
-          helperText="Please select your time"
-        >
-          {times.map((option) => (
-            <MenuItem key={option.label} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+            <TextField
+              sx={{ my: 1 }}
+              id="outlined-select-level"
+              select
+              label="Select Level"
+              value={level}
+              onChange={handleLevelChange}
+              fullWidth
+              helperText="Please select your level"
+            >
+              {levels.map((option) => (
+                <MenuItem key={option.label} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            {/* DAY 1 */}
+            <Typography variant="h5">Preferred Day (1st Choice)</Typography>
+            <TextField
+              sx={{ my: 1 }}
+              id="outlined-select-location-1"
+              select
+              label="Select Location"
+              value={locationOne}
+              onChange={handleLocationOneChange}
+              fullWidth
+              helperText="Please select your location"
+            >
+              {locations.map((option) => (
+                <MenuItem key={option.label} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            {locationOne === "Others" && (
+              <TextField
+                sx={{ my: 1 }}
+                type="text"
+                id="outlined-other-one"
+                label="Enter your location"
+                fullWidth
+                onChange={(e) => handleOtherOneChange(e.target.value)}
+                helperText="Plase specify"
+              />
+            )}
+            <TextField
+              sx={{ my: 1 }}
+              id="outlined-select-day-1"
+              select
+              label="Select Day"
+              value={dayOne}
+              onChange={handleDayOneChange}
+              fullWidth
+              helperText="Please select your date"
+            >
+              {days.map((option) => (
+                <MenuItem key={option.label} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              sx={{ my: 1 }}
+              id="outlined-select-time-1"
+              select
+              label="Select Time"
+              value={timeOne}
+              onChange={handleTimeOneChange}
+              fullWidth
+              helperText="Please select your time"
+            >
+              {times.map((option) => (
+                <MenuItem key={option.label} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
-        {/* DAY 2 */}
-        <Typography variant="h5">Preferred Day (2nd Choice)</Typography>
-        <TextField
-          sx={{ my: 1 }}
-          id="outlined-select-location-2"
-          select
-          label="Select Location"
-          value={locationTwo}
-          onChange={handleLocationTwoChange}
-          fullWidth
-          helperText="Please select your location"
-        >
-          {locations.map((option) => (
-            <MenuItem key={option.label} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        {locationTwo === "Others" && (
-          <TextField
-            sx={{ my: 1 }}
-            type="text"
-            id="outlined-name"
-            label="Enter your location"
-            value={name}
-            fullWidth
-            onChange={handleLocationTwoChange}
-            helperText="Plase specify"
-          />
-        )}
-        <TextField
-          sx={{ my: 1 }}
-          id="outlined-select-day-2"
-          select
-          label="Select Day"
-          value={dayTwo}
-          onChange={handleDayTwoChange}
-          fullWidth
-          helperText="Please select your date"
-        >
-          {days.map((option) => (
-            <MenuItem key={option.label} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          sx={{ my: 1 }}
-          id="outlined-select-time-2"
-          select
-          label="Select Time"
-          value={timeTwo}
-          onChange={handleTimeTwoChange}
-          fullWidth
-          helperText="Please select your time"
-        >
-          {times.map((option) => (
-            <MenuItem key={option.label} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <Button
-          onClick={handleFormData}
-          variant="contained"
-          size="large"
-          sx={{ background: "black" }}
-        >
-          Submit
-        </Button>
-      </form>
+            {/* DAY 2 */}
+            <Typography variant="h5">Preferred Day (2nd Choice)</Typography>
+            <TextField
+              sx={{ my: 1 }}
+              id="outlined-select-location-2"
+              select
+              label="Select Location"
+              value={locationTwo}
+              onChange={handleLocationTwoChange}
+              fullWidth
+              helperText="Please select your location"
+            >
+              {locations.map((option) => (
+                <MenuItem key={option.label} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            {locationTwo === "Others" && (
+              <TextField
+                sx={{ my: 1 }}
+                type="text"
+                id="outlined-other-two"
+                label="Enter your location"
+                fullWidth
+                onChange={(e) => handleOtherTwoChange(e.target.value)}
+                helperText="Plase specify"
+              />
+            )}
+            <TextField
+              sx={{ my: 1 }}
+              id="outlined-select-day-2"
+              select
+              label="Select Day"
+              value={dayTwo}
+              onChange={handleDayTwoChange}
+              fullWidth
+              helperText="Please select your date"
+            >
+              {days.map((option) => (
+                <MenuItem key={option.label} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              sx={{ my: 1 }}
+              id="outlined-select-time-2"
+              select
+              label="Select Time"
+              value={timeTwo}
+              onChange={handleTimeTwoChange}
+              fullWidth
+              helperText="Please select your time"
+            >
+              {times.map((option) => (
+                <MenuItem key={option.label} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <Button onClick={handleFormData} variant="contained" size="large">
+              Submit
+            </Button>
+          </form>
+        </div>
+      </div>
 
       {/* SUCCESS MODAL */}
 

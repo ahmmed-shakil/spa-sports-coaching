@@ -11,7 +11,7 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 
 export default function Points() {
   return (
-    <Box sx={{ width: "100%", bgcolor: "#F6C505", mb: 5 }}>
+    <Box sx={{ width: "100%", mb: 5 }}>
       <Divider />
       {/* <nav aria-label="secondary mailbox folders"> */}
       <List>

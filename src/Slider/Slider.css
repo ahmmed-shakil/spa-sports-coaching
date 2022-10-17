@@ -6,7 +6,10 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background-image: url("../images/form-bg.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -24,16 +27,59 @@
 }
 
 .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 400px;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .swiper-button-next,
 .swiper-button-prev {
-  background-color: #262223;
-  color: #f6c505;
+  background-color: #1ca3ec;
+  color: snow;
   font-weight: bolder;
   padding: 10px;
+}
+
+.mySwiper {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 50px;
+}
+
+#slider {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+#image {
+  justify-self: end;
+  margin-right: 30px;
+}
+#content {
+  justify-self: start;
+  margin-left: 30px;
+}
+
+@media (max-width: 792px) {
+  #slider {
+    grid-template-columns: 1fr;
+  }
+  #image {
+    width: 100%;
+    justify-self: center;
+    margin-right: 0;
+    /* margin:auto; */
+  }
+  #swiper {
+    height: auto;
+    padding: 30px 0;
+  }
+  #content {
+    width: 90%;
+    margin-left: 0;
+    margin: auto;
+    justify-self: center;
+  }
 }

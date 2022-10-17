@@ -5,28 +5,25 @@ import Header from "./Header/Header";
 import Slider from "./Slider/Slider";
 import Form from "./Form/Form";
 import FormContainer from "./FormContainer/FormContainer";
+import Courses from "./Courses/Courses";
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#F6C505",
-    },
-    secondary: {
-      main: "#11cb5f",
-    },
-  },
   typography: {
-    fontFamily: "Roboto, Arial",
+    fontFamily: ["Ubuntu", "sans-serif"].join(","),
   },
+  color: "black",
 });
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Slider />
-      <FormContainer />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Header />
+        <Slider />
+        <Courses />
+        <FormContainer />
+      </div>
+    </ThemeProvider>
   );
 }
 
